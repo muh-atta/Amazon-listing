@@ -7,5 +7,11 @@
       "default_icon": "logo.jpg",
       "default_popup": "popup.html"
     },
-    "permissions": ["tabs"]
+    "permissions": ["tabs", "scripting"],
+    "content_scripts": [
+        {
+            "matches": ["*://www.amazon.com/*"],
+            "js": ["highlight.js"]
+        }
+    ]
 }

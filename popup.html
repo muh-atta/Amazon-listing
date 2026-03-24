@@ -1,41 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Amazon Listing</title>
-    <link rel="icon" type="image/svg+xml" href="logo.jpg" />
-    <style>
-      body {
-        margin: 0;
-        padding: 10px;
-        font-family: Arial, sans-serif;
-        min-width: 120px;
-        min-height: 70px;
-      }
-      #status {
-        padding: 10px;
-        font-weight: bold;
-        text-align: center;
-        color: white;
-        border-radius: 5px;
-      }
-      #toggleBtn{
-        padding: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        border-radius: 6px;
-      }
-      #toggleBtn:hover{
-        background-color: azure;
-      }
-    </style>
+  <meta charset="UTF-8">
+  <title>Amazon Listing</title>
+  <link rel="icon" type="image/jpeg" href="logo.jpg" />
+  <style>
+    body {
+      margin: 0;
+      padding: 15px;
+      font-family: Arial, sans-serif;
+      min-width: 380px;
+      min-height: 220px;
+      background-color: #f9f9f9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h2 {
+      font-size: 16px;
+      margin: 0 0 10px 0;
+      text-align: center;
+      color: #333;
+    }
+
+    #status {
+      width: 100%;
+      padding: 10px;
+      font-weight: bold;
+      text-align: center;
+      color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+
+    .button-container {
+      margin-top: 15px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    #toggleBtn {
+      padding: 8px 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      background-color: #007bff;
+      color: white;
+      transition: background-color 0.3s, transform 0.1s;
+    }
+
+    #toggleBtn:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    #toggleBtn:active {
+      transform: scale(0.95);
+    }
+  </style>
 </head>
 <body>
-    <div id="status">Checking...</div>
-    <button id="toggleBtn">Start</button>
-    <script src="popup.js"></script>
+  <h2>Amazon Listing Checker</h2>
+  <div id="status">Checking...</div>
+  <div class="button-container">
+      <button id="toggleBtn">Start</button>
+  </div>
+  <p id="currentCount"></p>
+  <p>of</p>
+  <div id="totalCount">  </div>
+  <script src="popup.js"></script>
 </body>
 </html>
