@@ -18,10 +18,24 @@
         color: white;
         border-radius: 5px;
       }
+      #toggleBtn{
+        padding: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        border-radius: 6px;
+      }
+      #toggleBtn:hover{
+        background-color: azure;
+      }
     </style>
 </head>
 <body>
-    <div id="status"></div>
+    <div id="status">Checking...</div>
+    <button id="toggleBtn">Start</button>
     <script src="popup.js"></script>
 </body>
 </html>
