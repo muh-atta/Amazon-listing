@@ -3,9 +3,25 @@
 <head>
     <title>Amazon Listing</title>
     <link rel="icon" type="image/svg+xml" href="logo.jpg" />
+    <style>
+      body {
+        margin: 0;
+        padding: 10px;
+        font-family: Arial, sans-serif;
+        min-width: 120px;
+        min-height: 70px;
+      }
+      #status {
+        padding: 10px;
+        font-weight: bold;
+        text-align: center;
+        color: white;
+        border-radius: 5px;
+      }
+    </style>
 </head>
 <body>
-    <h1>Hello, Chrome Extension!</h1>
+    <div id="status"></div>
     <script src="popup.js"></script>
 </body>
 </html>
