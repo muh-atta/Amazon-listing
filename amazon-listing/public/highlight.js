@@ -42,13 +42,12 @@ function startHighlight() {
 function highlightNext() {
   if (currentIndex >= items.length) {
 
-    // 🔥 Convert to nested object format
+    // Convert to nested object format
     const formattedData = {};
     
     collectData.forEach((item, index) => {
       formattedData[`Item ${index + 1}`] = item;
     });
-    <App />
     
     console.log("Final Data:", formattedData);
 
@@ -71,6 +70,11 @@ function highlightNext() {
   const data = extractItemData(item);
   collectData.push(data);
 
+  chrome.runtime.sendMessage({
+  type: "itemFetched",
+  item: data
+});
+
   console.log(`Item ${currentIndex + 1}:`, data);
 
   // Update progress
@@ -83,7 +87,7 @@ function highlightNext() {
   previousItem = item;
   currentIndex++;
 
-  highlightInterval = setTimeout(highlightNext);
+  highlightInterval = setTimeout(highlightNext, getRandomDelay());
 }
 
 // Stop highlighting
@@ -132,11 +136,6 @@ function extractItemData(item) {
     item.querySelector("img.s-image")?.src ||
     item.querySelector("img")?.src ||
     "No image available";
-
-  // Product link
-  // const link =
-  //   item.querySelector("h2 a")?.href ||
-  //   "No link available";
 
   const link =
   item.querySelector("h2 a")?.href || 

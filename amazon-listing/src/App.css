@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+html, body, #root {
+  width: 700px;
+  min-height: 500px;
+  background-color: #f3f4f6;
+}
+
+h2{
+  color: black;
+  font-weight: bold;
+}
