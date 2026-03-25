@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "Amazon Listing Extension",
+  "version": "1.0",
+  "description": "Chrome extension for amazon listing page",
+  "action": {
+      "default_icon": "logo.jpg",
+      "default_popup": "index.html"
+    },
+    "permissions": ["tabs", "scripting"],
+    "content_scripts": [
+        {
+            "matches": ["*://www.amazon.com/*"],
+            "js": ["highlight.js"]
+        }
+    ]
+}
