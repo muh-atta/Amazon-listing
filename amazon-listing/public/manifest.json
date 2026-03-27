@@ -7,11 +7,17 @@
       "default_icon": "logo.jpg",
       "default_popup": "index.html"
     },
-    "permissions": ["tabs", "scripting"],
+    "permissions": ["tabs", "scripting", "activeTab", "downloads", "storage"],
+"host_permissions": [
+    "<all_urls>"
+],
+    "background": {
+        "service_worker": "background.js"
+    },
     "content_scripts": [
         {
             "matches": ["*://www.amazon.com/*"],
-            "js": ["highlight.js"]
+            "js": ["amazonScrapper.js"]
         }
     ]
 }
