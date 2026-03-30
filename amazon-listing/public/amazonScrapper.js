@@ -1,4 +1,4 @@
-console.log('amazon scrapper file loaded ')
+// Adding styling to the button
 function injectButtonStyles() {
   if (document.getElementById("open-item-btn-styles")) return;
   const style = document.createElement("style");
@@ -40,6 +40,7 @@ function handleHiddenMode(link, title) {
   iframe.src = link;
   document.body.appendChild(iframe);
 
+//   Getting details of the product
   iframe.onload = () => {
     try {
       const doc = iframe.contentDocument;
@@ -57,7 +58,17 @@ function handleHiddenMode(link, title) {
       const rating =
         doc.querySelector(".a-icon-alt")?.innerText?.trim() || "No rating";
 
-      console.log("Hidden Mode Data:", { title, link, images, seller, price, rating });
+        // Saving and setting product details at localstorage
+      const scrapedData = { title, link, images, seller, price, rating };
+      console.log("Hidden Mode Data:", scrapedData);
+      
+      chrome.storage.local.get({ products: [] }, (res) => {
+        const products = res.products;
+        products.push(scrapedData);
+        chrome.storage.local.set({ products }, () => {
+          console.log("Saved hidden mode product:", scrapedData);
+        });
+      });
 
     } catch (err) {
       console.error(err);
@@ -67,6 +78,7 @@ function handleHiddenMode(link, title) {
   };
 }
 
+// Adding button the items
 function addButtonToItems() {
   injectButtonStyles();
 
@@ -115,71 +127,3 @@ function addButtonToItems() {
 addButtonToItems();
 
 new MutationObserver(addButtonToItems).observe(document.body, { childList: true, subtree: true });
-
-
-    // Buton click handler
-//     button.addEventListener("click", async (e) => {
-//       e.stopPropagation();
-//       alert('you clicked at button, to see details visit browser console')
-//       const link = item.querySelector("h2 a")?.href || item.querySelector("a.a-link-normal")?.href;
-//       const title = item.querySelector("h2 span")?.innerText || "No title";
-//       const rating = item.querySelector(".a-icon-alt")?.innerText?.trim() || "No rating";
-//       const price =
-//         item.querySelector("#priceblock_ourprice")?.innerText?.trim() ||
-//         item.querySelector("#priceblock_dealprice")?.innerText?.trim() ||
-//         item.querySelector(".a-price .a-offscreen")?.innerText?.trim() ||
-//         item.querySelector("#corePrice_feature_div .a-offscreen")?.innerText?.trim() ||
-//         "Price not available";
-
-//       if (!link) return console.log("No link available for this item");
-
-//       // Open a hidden iframe to scrape details 
-//       const iframe = document.createElement("iframe");
-//       iframe.style.width = "0";
-//       iframe.style.height = "0";
-//       iframe.style.position = "absolute";
-//       iframe.style.left = "-9999px";
-//       iframe.src = link;
-
-//       document.body.appendChild(iframe);
-
-//       iframe.onload = async () => {
-//         try {
-//           const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-
-//           // Collect all images
-//           const imageElements = Array.from(
-//             iframeDoc.querySelectorAll("#altImages img, .imgTagWrapper img")
-//           );
-//           const images = imageElements.map(img => img.src || img.getAttribute("data-old-hires")).filter(Boolean);
-
-//           // Get seller/store name
-//           const seller =
-//             iframeDoc.querySelector("#sellerProfileTriggerId, #bylineInfo")?.innerText?.trim() ||
-//             "Seller not available";
-
-//           const itemData = {
-//             title,
-//             link,
-//             images,
-//             price,
-//             seller,
-//             rating,
-//           };
-
-//           console.log("Detailed Item Data:", itemData);
-//         } catch (err) {
-//           console.error("Error scraping details page:", err);
-//         } finally {
-//           document.body.removeChild(iframe);
-//         }
-//       };
-//     });
-
-//     item.prepend(button);
-//   });
-// }
-
-// // Initial call and observe dynamic items
-// addButtonToItems();
-// new MutationObserver(addButtonToItems).observe(document.body, { childList: true, subtree: true });
