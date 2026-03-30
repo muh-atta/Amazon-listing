@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraped Products Side Panel</title>
+    <link rel="stylesheet" href="sidebar.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex flex-col h-screen font-sans bg-gray-100 text-gray-900">
+
+  <!-- Header -->
+  <div class="sticky top-0 z-10 flex justify-between items-center p-4 bg-white border-b border-gray-200 shadow-sm">
+    <h2 class="text-base font-semibold tracking-tight m-0">Scraped Products</h2>
+    <button id="clearBtn" class="px-3 py-1 text-xs font-medium border border-red-500 text-red-500 rounded-md hover:bg-red-500 hover:text-white transition-colors">
+      Clear All
+    </button>
+  </div>
+
+  <!-- Products List -->
+  <div id="productsList" class="flex-1 p-4 flex flex-col gap-4 overflow-y-auto">
+    
+  </div>
+
+  <script src="sidebar.js"></script>
+</body>
+</html>
