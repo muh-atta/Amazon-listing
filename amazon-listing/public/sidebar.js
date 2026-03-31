@@ -42,9 +42,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const imageUrl = (product.images && product.images.length > 0) ? product.images[0] : 'https://via.placeholder.com/150?text=No+Image';
       
       card.innerHTML = `
-        <img src="${imageUrl}" class="product-image" alt="Product Image">
+      <div class="product-image-wrapper">
+      <img src="${imageUrl}"  alt="Product Image">
+      <h3 class="product-title" title="${product.title}">${product.title || 'Unknown Product'}</h3>
+      </div>
         <div class="product-details">
-          <h3 class="product-title" title="${product.title}">${product.title || 'Unknown Product'}</h3>
           <p class="product-price">${product.price || 'Price unavailable'}</p>
           <div class="product-meta">
             <span class="product-seller" title="${product.seller}">By: ${product.seller || 'Unknown'}</span>
